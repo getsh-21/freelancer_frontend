@@ -17,7 +17,7 @@ const JobsManagement = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this job?')) return;
-    await axios.delete(`http://localhost:5000/api/admin/jobs/${id}`);
+    await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/jobs/${id}`);
     setJobs(jobs.filter(j => j._id !== id));
   };
 

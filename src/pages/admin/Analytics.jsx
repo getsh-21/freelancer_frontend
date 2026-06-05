@@ -11,7 +11,7 @@ const Analytics = () => {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/analytics').then(({ data }) => setStats(data)).catch(() => {});
+    axios.get(`${import.meta.env.VITE_API_URL}/api/admin/analytics`).then(({ data }) => setStats(data)).catch(() => {});
   }, []);
 
   if (!stats) return <div className="min-h-screen flex flex-col"><Navbar /><div className="flex flex-1"><Sidebar /><main className="flex-1 p-6 flex items-center justify-center"><p className="text-gray-400">Loading analytics...</p></main></div></div>;

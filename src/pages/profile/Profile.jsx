@@ -29,7 +29,7 @@ const Profile = () => {
       fd.append('bio', form.bio);
       fd.append('skills', form.skills);
       if (image) fd.append('profileImage', image);
-      const { data } = await axios.put('http://localhost:5000/api/users/profile/update', fd);
+      const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/profile/update`, fd);
       login({ ...user, ...data });
       setMessage('Profile updated successfully!');
     } catch (err) {
@@ -51,7 +51,7 @@ const Profile = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center text-white font-bold text-2xl overflow-hidden">
-                    {user?.profileImage ? <img src={`http://localhost:5000/uploads/${user.profileImage}`} className="w-full h-full object-cover" alt="profile" /> : user?.name?.[0]}
+                    {user?.profileImage ? <img src={`${import.meta.env.VITE_API_URL}/uploads/${user.profileImage}`} className="w-full h-full object-cover" alt="profile" /> : user?.name?.[0]}
                   </div>
                   <input type="file" accept="image/*" onChange={e => setImage(e.target.files[0])} className="text-sm text-gray-500" />
                 </div>
